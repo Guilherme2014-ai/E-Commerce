@@ -1,7 +1,7 @@
 class Public{
 
     Index(req,res){
-        res.send("Ola");
+        res.render("public/index.ejs");
     };
 
 };

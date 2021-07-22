@@ -1,10 +1,11 @@
 const express = require('express');
-const database = require('./database/connection');
+const path = require('path');
 const app = express();
 
 
-app.set("views", "./views");
+app.set("views", path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

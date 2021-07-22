@@ -1,9 +1,9 @@
-class Public{
+class Admins{
 
     Index(req,res){
-        res.send("Area de admins");
+        res.render('admin/index')
     };
 
 };
 
-module.exports = new Public();
+module.exports = new Admins();
