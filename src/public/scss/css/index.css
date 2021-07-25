@@ -1,0 +1,52 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  opacity: 78%;
+}
+
+body {
+  background-color: #e8e5e9;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+header nav {
+  display: flex;
+  font-family: 'Zen Tokyo Zoo', cursive;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 1000px;
+}
+
+header nav ul {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+header nav ul li {
+  margin: 10px;
+}
+
+header nav ul li:hover {
+  font-size: 1.7rem;
+  transition: 100ms;
+}
