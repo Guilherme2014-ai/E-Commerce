@@ -2,22 +2,31 @@
 * { margin: 0; padding: 0; font-size: 100%; box-sizing: border-box; }
 ul { list-style: none; }
 a { text-decoration: none; color: black; opacity: 78%; }
-body { background-color: #e8e5e9; }
+body {
+    display: flex;
+    background-color: #d2c5d6;
+    flex-flow: column wrap;
+    align-items: center;
+}
 
 /* Header */
 header {
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-between;
+    flex-flow: row wrap;
+    position: absolute;
+    left: 0px;
+    top: 0px;
 
     nav {
         display: flex;
         font-family: 'Zen Tokyo Zoo', cursive;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
         justify-content: space-between;
-        width: 1000px;
+        width: 950px;
         ul {
             display: flex;
+            flex-flow: row wrap;
             margin: 10px;
             align-items: center;
             font-size: 1.5rem;
@@ -30,4 +39,69 @@ header {
             }
         }
     }
+}
+
+/* Settings */
+section {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    text-align: center;
+    font-size: 3.4rem;
+    align-items: center;
+    background-color: rgb(99, 133, 235);
+    width: 98%;
+    height: 300px;
+    border-radius: 9px;
+    font-family: 'Encode Sans SC', sans-serif;
+    padding: 20px;
+    cursor: pointer;
+}
+.title {
+    margin-top: 100px;
+}
+section:hover {
+    font-size: 4rem;
+    transition: 240ms;
+    width: 100%;
+    height: 310px;
+}
+
+@media(max-width: 1000px) {
+    body {
+        header {
+            flex-direction: column;
+            nav {
+                flex-direction: column;
+            }
+            border-bottom: solid black 2px;
+        }
+        .tittle {
+            margin-top: 150px;
+        }
+    }  
+}
+div {
+    text-align: center;
+    hr {
+        width: 280px;
+    }
+    h1 {
+        margin-top: 150px;
+        font-size: 2.5rem;
+        font-family: 'PT Sans', sans-serif;
+    }
+    hr {
+        border: none;
+        background-color: black;
+        padding: 2px;
+        border-radius: 2px;
+    }
+    hr:hover {
+        width: 350px;
+        transition: 100ms;
+    }
+}
+.looks {
+    background-color: rgb(235, 99, 99);
 }
