@@ -1,0 +1,46 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+header .location:hover a {
+  color: #32af58;
+}
+
+header .facebook:hover a {
+  color: #3245af;
+}
+
+header .instagram:hover a {
+  color: #af32a5;
+}
+
+header nav {
+  display: flex;
+  font-family: 'Zen Tokyo Zoo', cursive;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 950px;
+}
+
+header nav ul {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  font-size: 1.5rem;
+  flex-flow: row wrap;
+}
+
+header nav ul li {
+  margin: 10px;
+}
+
+header nav ul li:hover {
+  font-size: 1.7rem;
+  transition: 100ms;
+  color: black;
+}
