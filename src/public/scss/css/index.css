@@ -75,10 +75,6 @@ section {
   cursor: pointer;
 }
 
-.title {
-  margin-top: 100px;
-}
-
 section:hover {
   font-size: 4rem;
   transition: 240ms;
@@ -86,19 +82,7 @@ section:hover {
   height: 310px;
 }
 
-@media (max-width: 1000px) {
-  body header {
-    flex-direction: column;
-    border-bottom: solid black 2px;
-  }
-  body header nav {
-    flex-direction: column;
-  }
-  body .tittle {
-    margin-top: 150px;
-  }
-}
-
+/* DiV */
 div {
   text-align: center;
 }
@@ -125,6 +109,24 @@ div hr:hover {
   transition: 100ms;
 }
 
+/* Classes */
+.title {
+  margin-top: 100px;
+}
+
 .looks {
   background-color: #eb6363;
+}
+
+@media (max-width: 1000px) {
+  body header {
+    flex-direction: column;
+    border-bottom: solid black 2px;
+  }
+  body header nav {
+    flex-direction: column;
+  }
+  body .tittle {
+    margin-top: 150px;
+  }
 }

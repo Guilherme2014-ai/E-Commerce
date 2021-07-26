@@ -1,34 +1,34 @@
 <%- include('../partials/header.ejs') %>
+<title>Area de Administraçao</title>
+<%- include('../partials/header-end.ejs') %> 
 
-<header>
-    <a href="#"><img src="https://cdn.discordapp.com/attachments/857701858655076402/868929298113912892/1627239188408.png" alt="Sua Logo Aqui" width="160"></a>
-    
-    <nav>
-        <ul class="categories">
-            <li><a href="#">Feminina</a></li>
-            <li><a href="#">Masculino</a></li>
-            <li><a href="#">Inverno</a></li>
-            <li><a href="#">Verao</a></li>
-        </ul>
+<%- include('../partials/nav.ejs') %> 
 
-        <ul>
-            <li><a href="#"><i class="fas fa-location-arrow"></i></a></li>
-            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-        </ul>
-    </nav>
-</header>
+
+
 <div class="tittle"><h1>Administraçao</h1><br><hr></div><br><br>
 
-<section class="settings">
-    <i class="fas fa-cogs"></i>
-    <h1>Configuraçoes</h1>
+<section class="settings" id="settings">
+    <i class="fas fa-users"></i>
+    <h1>Usuarios</h1>
 </section>
 <br>
-<section class="looks">
+<section class="looks" id="looks">
     <i class="fas fa-tshirt"></i>
     <h1>Roupas</h1>
 </section>
 <br>
 
+
+<script>
+    const settings = document.getElementById('settings');
+    const looks = document.getElementById('looks');
+
+    settings.addEventListener('click', function(){
+        window.location.href = "/admin/users";
+    });
+    looks.addEventListener('click', function(){
+        window.location.href = "/admin/looks";
+    });
+</script>
 <%- include('../partials/scripts.ejs') %>
