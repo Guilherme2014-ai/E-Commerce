@@ -9,37 +9,6 @@ body {
     align-items: center;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-
-    nav {
-        display: flex;
-        font-family: 'Zen Tokyo Zoo', cursive;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        width: 950px;
-        ul {
-            display: flex;
-            flex-flow: row wrap;
-            margin: 10px;
-            align-items: center;
-            font-size: 1.5rem;
-            li {
-                margin: 10px;
-            }
-            li:hover {
-                font-size: 1.7rem;
-                transition: 100ms;
-            }
-        }
-    }
-}
 
 /* Settings */
 section {
@@ -67,15 +36,13 @@ section:hover {
 /* DiV */
 div {
     text-align: center;
-    hr {
-        width: 280px;
-    }
     h1 {
         margin-top: 150px;
         font-size: 2.5rem;
         font-family: 'PT Sans', sans-serif;
     }
     hr {
+        width: 280px;
         border: none;
         background-color: black;
         padding: 2px;
