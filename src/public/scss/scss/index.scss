@@ -55,24 +55,19 @@ div {
 }
 
 /* Classes */
-.title {
-    margin-top: 100px;
-}
 .looks {
     background-color: rgb(235, 99, 99);
 }
 
 @media(max-width: 1000px) {
-    body {
-        header {
+    header {
+        flex-direction: column;
+        nav {
             flex-direction: column;
-            nav {
-                flex-direction: column;
-            }
-            border-bottom: solid black 2px;
         }
-        .tittle {
-            margin-top: 150px;
-        }
-    }  
+        border-bottom: solid black 2px;
+    }
+    .title {
+        margin-top: 150px;
+    }
 }

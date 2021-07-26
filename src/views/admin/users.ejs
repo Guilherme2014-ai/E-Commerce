@@ -8,46 +8,49 @@
 
 
 
-<div id="title"><h1>Usuários</h1><hr></div><br>
+<section>
+    <div class="title"><h1>Usuários</h1><hr></div><br>
 
 
-<% if (users.length == 0){ %>
-    <h1>Sem Usuários</h1>
-    <p>Quando Alguem Se logar irá aparecer aqui !</p>
-<% }else{ %>
-    <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-    
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Acoes</th>
-    
-          </tr>
-        </thead>
-        <tbody>
-            <% users.forEach(user => { %>
-                <tr> 
-                    <th scope="row"><%= user.id %></th>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <% if (user.rule == 1){ %>
-                        <td>admin</td>
-                    <% }else{ %>
-                        <td>normal</td>
-                    <% } %> 
-                    
-                    <td>
-                        <a href="#editar"><div class="btn btn-outline-warning">Editar</div></a>
-                        <div class="btn btn-outline-danger">Deletar</div>
-                    </td>
-                  </tr>
-            <% }) %>
-        </tbody>
-    </table>
-<% } %>  
+    <% if (users.length == 0){ %>
+        <h1>Sem Usuários</h1>
+        <p>Quando Alguem Se logar irá aparecer aqui !</p>
+    <% }else{ %>
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+        
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Açoes</th>
+        
+            </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr> 
+                        <th scope="row"><%= user.id %></th>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <% if (user.rule == 1){ %>
+                            <td>admin</td>
+                        <% }else{ %>
+                            <td>normal</td>
+                        <% } %> 
+                        
+                        <td>
+                            <a href="#editar"><div class="btn btn-outline-warning">Editar</div></a>
+                            <div class="btn btn-outline-danger">Deletar</div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+</section>
+
 
 
 <%- include('../partials/scripts.ejs') %>

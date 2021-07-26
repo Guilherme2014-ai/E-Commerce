@@ -24,19 +24,25 @@ a:hover {
 body {
   display: flex;
   background-color: #d2c5d6;
-  flex-flow: column wrap;
-  align-items: center;
+  flex-direction: column;
 }
 
 /* Title */
-#title {
+section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
   margin-top: 150px;
   font-family: 'PT Sans', sans-serif;
   font-size: 2.5rem;
   text-align: center;
 }
 
-#title hr {
+.title hr {
   width: 200px;
   border: none;
   background-color: black;
@@ -44,7 +50,20 @@ body {
   border-radius: 2px;
 }
 
-#title hr:hover {
+.title hr:hover {
   transition: 100ms;
   width: 280px;
+}
+
+@media (max-width: 1000px) {
+  header {
+    flex-direction: column;
+    border-bottom: solid black 2px;
+  }
+  header nav {
+    flex-direction: column;
+  }
+  section {
+    margin-top: 150px;
+  }
 }
