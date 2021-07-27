@@ -1,0 +1,79 @@
+/* RESET */
+* { margin: 0; padding: 0; font-size: 100%; box-sizing: border-box; }
+ul { list-style: none; }
+a { list-style: none; text-decoration: none; color: black; opacity: 78%; }
+a:hover { color: black; }
+body { background-color: #d2c5d6; width: 100%; }
+
+main {
+    margin-top: 100px;
+
+    .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        font-family: 'Lexend', sans-serif;
+        background-position: center;
+        background-size: cover;
+        h1 {
+            font-size: 150px;
+            color: blanchedalmond;
+            text-shadow: black -1px 5px 5px;
+            cursor: default;
+        }
+        h1:hover {
+            font-size: 200px;
+            text-shadow: black -1px 5px 10px;
+            transition: 100ms;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 50px;
+        align-items: center;
+        text-align: center;
+
+        hr {
+            padding: 2px;
+            border-radius: 2px;
+            background-color: black;
+            width: 160px;
+        }
+        hr:hover {
+            width: 200px;
+            transition: 100ms;
+        }
+
+
+        .grid{
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+        }
+        .grid li {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Lexend', sans-serif;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 350px;
+            padding: 20px;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            margin: 10px;
+            box-shadow: -2px 5px 7px rgb(92, 92, 92);
+            border-radius: 7px;
+        }
+        
+        .grid li.small{ flex-basis: 37%; }
+        .grid li.large{ flex-basis: 59%; }
+        .grid li:hover { flex-grow: 0.1; transition: 100ms; cursor: pointer; }
+    }
+
+}

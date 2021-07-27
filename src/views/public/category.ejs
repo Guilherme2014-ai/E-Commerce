@@ -1,0 +1,79 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/category.css"> <%# Aqui carrega o css da da pagina 'users' %> 
+<title><%= category.name %></title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+
+<main>
+
+    <section class="image" style="background-image: url('<%= category.img %>');">
+        <h1><strong><%= category.name %></strong></h1>
+    </section>
+
+    <section class="content">
+
+        <div class="title">
+            <h1><strong><%= category.name %></strong></h1><hr>
+        </div>
+        <br><br>
+
+        <ul class="grid">
+            <% var n = 0 %>
+            <% var i = 1 %>
+
+            <li onclick="liClick('<%= category.inventory[0].id %>')" class="large" style="background-image: url('<%= category.inventory[0].img %>');">
+                <h1><%= category.inventory[0].name %></h1><br><br>
+                <p><%= category.inventory[0].desc %></p>
+                <h3><strong><%= category.inventory[0].price %> R$</strong></h3>
+            </li>
+
+            <% var looks = category.inventory.slice(1,category.inventory.length) %>
+
+            <% looks.forEach(function(category) { %>
+                <% if(i == 0){ %>
+                    <li onclick="liClick('<%= category.id %>')" class="large" style="background-image: url('<%= category.img %>');">
+                        <h1><strong><%= category.name %></strong></h1><br><br>
+                        <p><strong><%= category.desc %></strong></p>
+                        <h3><strong><%= category.price %> R$</strong></h3>
+                    </li>
+
+                    <% if(n == 2){ %>
+                        <% n = 0 %>
+                        <% i = 1 %>
+                    <% } %>
+                    <% n = 2 %>
+                <% }else{ %>
+                    <li onclick="liClick('<%= category.id %>')" class="small" style="background-image: url('<%= category.img %>');">
+                        <h1><strong><%= category.name %></strong></h1><br><br>
+                        <p><strong><%= category.desc %></strong></p>
+                        <h3><strong><%= category.price %> R$</strong></h3>
+                    </li>
+
+                    <% if(n == 1){ %>
+                        <% n = 0 %>
+                        <% i = 0 %>
+                    <% } %>
+                    <% n++ %>
+                <% } %>
+            <% }) %>
+
+            <%# 1* small | large 2x & small 2x loop%> 
+        </ul>
+
+    </section><br>
+
+</main>
+
+<script>
+
+    function liClick(id) {
+        window.location.href = `/inventory/${id}`
+    }
+
+</script>
+
+<%- include('../partials/scripts.ejs') %>

@@ -101,9 +101,7 @@ body {
 }
 
 .content .card:hover {
-  width: 20%;
   cursor: pointer;
-  transition: 100ms;
 }
 
 .content .categories {
@@ -113,10 +111,8 @@ body {
   align-content: flex-end;
 }
 
+/* Responsivity */
 @media (max-width: 1124px) {
-  .content {
-    background: black;
-  }
   header {
     border-bottom: solid black 1px;
   }
@@ -132,4 +128,44 @@ body {
   }
 }
 
-/*  TERMINE A RESPONSIVIDADE  */
+@media (max-width: 1000px) {
+  .image div h1 {
+    font-size: 50px;
+    margin-left: 250px;
+  }
+  .image div h1:hover {
+    font-size: 55px;
+  }
+  header nav .items {
+    margin-right: 370px;
+  }
+}
+
+@media (max-width: 628px) {
+  header nav .items {
+    margin-right: 385px;
+  }
+  main {
+    margin-top: 300px;
+  }
+}
+
+@media (max-width: 620px) {
+  .image div h1 {
+    font-size: 40px;
+    margin-left: 200px;
+  }
+  .image div h1:hover {
+    font-size: 55px;
+  }
+  .image div h2 {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width: 528px) {
+  .image div h1 {
+    font-size: 30px;
+    margin-left: 160px;
+  }
+}

@@ -3,12 +3,12 @@
     
     <nav>
         <ul class="categories">
-            <% categories.forEach(category => { %>
+            <% categories.forEach(function(category) { %>
                 <li><a href="/category/<%= category.slug %>"><%= category.name %></a></li>
             <% }) %>
         </ul>
 
-        <ul>
+        <ul class="items">
             <li class="icon location"><a href="https://www.google.com.br/maps/@-23.5328968,-46.9264038,3a,90y,52.57h,81.91t/data=!3m6!1e1!3m4!1s2jBy5iPdmNI3fq9vG7rOvw!2e0!7i16384!8i8192"><i class="fas fa-location-arrow"></i></a></li>
             <li class="icon facebook"><a href="https://www.facebook.com/profile.php?id=100007978214303"><i class="fab fa-facebook-square"></i></a></li>
             <li class="icon instagram"><a href="https://www.instagram.com/jovemprogramador16/"><i class="fab fa-instagram"></i></a></li>
