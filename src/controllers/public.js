@@ -1,7 +1,17 @@
+const CategoriesModel = require('../models/categories');
+
 class Public{
 
-    Index(req,res){
-        res.render("public/index.ejs");
+    async Index(req,res){
+        try {
+            
+            const categories = await CategoriesModel.FindAll();
+
+            res.render("public/index.ejs", { categories });
+
+        } catch(err){
+            console.error(err);
+        }
     };
 
 };

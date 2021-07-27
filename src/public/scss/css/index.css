@@ -17,10 +17,7 @@ a {
 }
 
 body {
-  display: flex;
   background-color: #d2c5d6;
-  flex-flow: column wrap;
-  align-items: center;
 }
 
 /* Settings */
@@ -49,7 +46,10 @@ section:hover {
 
 /* DiV */
 div {
+  display: flex;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 div h1 {

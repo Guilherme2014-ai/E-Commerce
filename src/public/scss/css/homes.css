@@ -1,0 +1,30 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  opacity: 78%;
+}
+
+a:hover {
+  color: black;
+}
+
+body {
+  display: flex;
+  background-color: #d2c5d6;
+  flex-direction: column;
+}
+
+/* Section-Image */

@@ -1,14 +1,51 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Inicial</title>
-</head>
-<body>
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/home.css"> <%# Aqui carrega o css da da pagina 'users' %> 
+<title>Home</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+
+<main>
+    <section style="background-image: url(/img/pexels-andriana-3317434.jpg);" class="image">
     
-    <h1>Hello !</h1>
+        <div>
+            <h1><strong>50% Off</strong></h1>
+            <h2>À vista</h2>
+        </div>
     
-</body>
-</html>
+    </section>
+    
+    <br>
+    
+    <section class="content">
+        <h2>Top Categorias</h2>
+        <hr><br>
+    
+        <div class="categories">
+    
+            <% categories.forEach(category => { %>
+                <div onclick="clickCategory('<%= category.slug %>')" class="card">
+                    <section style="background-image: url('<%= category.img %>');"></section> <%# Validacao %> 
+                    <div class="card-body">
+                      <h2><strong><%= category.name %></strong></h2>
+                    </div>
+                </div>
+            <% }) %> 
+    
+        </div><br>
+    
+    </section>
+</main>
+
+
+<script>
+
+    function clickCategory(category) {
+        window.location.href = `/category/${category}`
+    }
+
+</script>
+<%- include('../partials/scripts.ejs') %>

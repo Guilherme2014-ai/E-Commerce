@@ -1,0 +1,107 @@
+/* RESET */
+* { margin: 0; padding: 0; font-size: 100%; box-sizing: border-box; }
+ul { list-style: none; }
+a { list-style: none; text-decoration: none; color: black; opacity: 78%; }
+a:hover { color: black; }
+body { background-color: #d2c5d6; width: 100%; }
+
+/* Section-Image */
+.image {
+    display: flex;
+    margin-top: 100px;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Lexend', sans-serif;
+    color: black;
+    text-align: center;
+    h1 {
+        font-size: 100px;
+        margin-left: 500px;
+        cursor: default;
+    }
+    h2 {
+        color: white;
+        margin-left: 260px;
+        cursor: default;
+    }
+    h1:hover {
+        font-size: 7rem;
+        transition: 100ms;
+    }
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Content */
+.content {
+    display: flex;
+    flex-direction: column;
+    font-family: 'PT Sans', sans-serif;
+    hr {
+        background-color: rgb(255, 0, 0);
+        border: solid rgb(146, 0, 0) 1px;
+        padding: 2px;
+        width: 17%;
+        border-radius: 2px;
+    }
+    hr:hover {
+        width: 25%;
+        transition: 100ms;
+    }
+    .card {
+        margin-bottom: 30px;
+        background-color: #eddff1;
+        box-shadow: black -4px 5px 5px;
+        width: 17rem;
+        text-align: center;
+        div {
+            height: 90px;
+            h2 {
+                font-size: 46px;
+            }
+        }
+        section {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+    .card:hover {
+        width: 20%;
+        cursor: pointer;
+        transition: 100ms;
+    }
+    .categories {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-content: flex-end;
+    }
+    
+}
+
+@media(max-width: 1124px) {
+    .content{
+        background: black;
+    }
+    header {
+        border-bottom: solid black 1px;
+    }
+    main {
+        margin-top: 200px
+    }
+    .image {
+        div {
+            h1 {
+                font-size: 70px;
+            }
+            h2 {
+                font-size: 20px;
+                margin-left: 310px;
+            }
+        }
+    }
+}
+/*  TERMINE A RESPONSIVIDADE  */

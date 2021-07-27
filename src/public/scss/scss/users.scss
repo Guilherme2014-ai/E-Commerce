@@ -3,11 +3,7 @@
 ul { list-style: none; }
 a { list-style: none; text-decoration: none; color: black; opacity: 78%; }
 a:hover { color: black; }
-body {
-    display: flex;
-    background-color: #d2c5d6;
-    flex-direction: column;
-}
+body { background-color: #d2c5d6;flex-direction: column; }
 
 /* Title */
 section {

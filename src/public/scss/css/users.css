@@ -22,7 +22,6 @@ a:hover {
 }
 
 body {
-  display: flex;
   background-color: #d2c5d6;
   flex-direction: column;
 }

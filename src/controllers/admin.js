@@ -1,26 +1,30 @@
-const knex = require('../database/connection');
+const CategoriesModel = require('../models/categories');
+const UsersModel = require('../models/users');
 
 class Admins{
 
     async Index(req,res){
         try{
 
-            res.render('admin/index')
+            const categories = await CategoriesModel.FindAll();
+
+            res.render('admin/index', { categories });
 
         } catch(err){
-            console.error(err)
-        }
+            console.error(err);
+        };
     };
     async Users(req,res){
         try{
-            const users = await knex.select('*').table('users');
+            const users = await UsersModel.FindAll();
+            const categories = await CategoriesModel.FindAll();
             
-            res.render('admin/users', { users })
+            res.render('admin/users', { users, categories  });
 
         } catch(err){
-            console.error(err)
-        }
-    }
+            console.error(err);
+        };
+    };
 
 };
 

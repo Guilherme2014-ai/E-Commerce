@@ -2,12 +2,7 @@
 * { margin: 0; padding: 0; font-size: 100%; box-sizing: border-box; }
 ul { list-style: none; }
 a { text-decoration: none; color: black; opacity: 78%; }
-body {
-    display: flex;
-    background-color: #d2c5d6;
-    flex-flow: column wrap;
-    align-items: center;
-}
+body { background-color: #d2c5d6; }
 
 
 /* Settings */
@@ -35,7 +30,10 @@ section:hover {
 
 /* DiV */
 div {
+    display: flex;
     text-align: center;
+    flex-direction: column;
+    align-items: center;
     h1 {
         margin-top: 150px;
         font-size: 2.5rem;
