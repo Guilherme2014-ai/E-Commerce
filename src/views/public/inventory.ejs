@@ -12,16 +12,21 @@
     <section>
         <div class="image" style="background-image: url('<%= look.img %>'); background-position: center; background-size: cover;"></div>
 
-        <br><br><br>
 
         <div class="info">
-            <h1><strong><%= look.name %></strong></h1>
-            <p><%= look.desc %></p>
+            <h1><strong><%= look.name %> - <%= look.price %> R$</strong></h1>
+            <p><%= look.desc %></p><br><br>
 
-            <a href="/buy/123"><button class="btn btn-success">Comprar</button></a>
+            <div id="content">
+                <div onclick="buyList()" id="buy">
+                    <div class="btn btn-success">Comprar</div>
+                </div>
+            </div>
+
         </div>
     </section>
 </main>
 
 
+<script src="/js/inventory.js"></script>
 <%- include('../partials/scripts.ejs') %>

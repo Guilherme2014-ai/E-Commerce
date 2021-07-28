@@ -1,6 +1,8 @@
 const categoriesModel = require('../models/categories');
 const inventoryModel = require('../models/inventory');
 const categoriesFactory = require('../factory/categories');
+const ValidationService = require('../services/validation');
+
 
 class Public{
 
@@ -23,20 +25,30 @@ class Public{
             const categoryRaw = await categoriesModel.FindOne(slug);
             const categories = await categoriesModel.FindAll();
 
-            if(categoryRaw == 404){ //Add uma tela para isso
-                res.sendStatus(404);
-                res.status(404);
-                return;
-            };
-            if(categoryRaw == 500){
-                res.sendStatus(500);
-                res.status(500);
-                return;
-            };
+            const isEmpety = ValidationService.isEmpyt(slug);
+            const isValid = ValidationService.isValid(slug);
 
-            const category = categoriesFactory(categoryRaw);
+            const ok = isEmpety == false && isValid == true;
 
-            res.render('public/category', { category,categories });
+            if(ok){
+                if(categoryRaw == 404){ //Add uma tela para isso
+                    res.sendStatus(404);
+                    res.status(404);
+                    return;
+                };
+                if(categoryRaw == 500){
+                    res.sendStatus(500);
+                    res.status(500);
+                    return;
+                };
+    
+                const category = categoriesFactory(categoryRaw);
+    
+                res.render('public/category', { category,categories });
+            }else{
+                res.status(400);
+                res.sendStatus(400);
+            }
 
         } catch(err){ console.error(err) };
     };
@@ -47,19 +59,30 @@ class Public{
             const look = await inventoryModel.FindOne(id);
             const categories = await categoriesModel.FindAll();
 
-            if(look == 400){
+            const isEmpety = ValidationService.isEmpyt(id);
+            const isValid = ValidationService.isValid(id);
+
+            const ok = isEmpety == false && isValid == true;
+
+            if(ok){
+                if(look == 400){
+                    res.status(400);
+                    res.sendStatus(400);
+                    return;
+                }
+                if(look == 500){
+                    res.status(500);
+                    res.sendStatus(500);
+                    return;
+                }
+    
+    
+                res.render('public/inventory', { look: look[0],categories });
+            }else{
                 res.status(400);
                 res.sendStatus(400);
                 return;
-            }
-            if(look == 500){
-                res.status(500);
-                res.sendStatus(500);
-                return;
-            }
-
-
-            res.render('public/inventory', { look: look[0],categories })
+            };
 
         } catch(err){
             console.error(err);
