@@ -67,7 +67,7 @@
         var inventory = inventoryRaw.slice(1, inventoryRaw.length)
 
         ul.innerHTML = `
-        <li class="small" style="background-image: url('${inventoryRaw[0].img}');">
+        <li onclick="liClick(${inventoryRaw[0].id})" class="small" style="background-image: url('${inventoryRaw[0].img}');">
             <h1><strong>${inventoryRaw[0].name}</strong></h1><br><br>
             <p>${inventoryRaw[0].desc}</p>
             <h3><strong>${inventoryRaw[0].price} R$</strong></h3>

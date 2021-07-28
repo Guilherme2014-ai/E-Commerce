@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/inventory.css"> <%# Aqui carrega o css da da pagina 'users' %> 
+<title>ASD</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+
+<main>
+    <section>
+        <div class="image" style="background-image: url('<%= look.img %>'); background-position: center; background-size: cover;"></div>
+
+        <br><br><br>
+
+        <div class="info">
+            <h1><strong><%= look.name %></strong></h1>
+            <p><%= look.desc %></p>
+
+            <a href="/buy/123"><button class="btn btn-success">Comprar</button></a>
+        </div>
+    </section>
+</main>
+
+
+<%- include('../partials/scripts.ejs') %>
