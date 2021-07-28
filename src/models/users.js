@@ -1,4 +1,5 @@
 const knex = require('../database/connection');
+const bcrypt = require('bcrypt');
 
 class Users{
 
@@ -7,8 +8,12 @@ class Users{
     };
     async Create(user){
         try {
-            user["rule"] = 0
-            // user['password'] = 
+            
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(user["password"],salt);
+            user["rule"] = 0;
+            user["password"] = hash;
+
             await knex.insert(user).table('users');
 
         } catch(err){
