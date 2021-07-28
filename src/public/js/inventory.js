@@ -6,12 +6,6 @@ function buyList() {
         <div class="form-group">
           <label for="endereco">Endereço</label>
           <input type="email" class="form-control" id="address" aria-describedby="endereco" placeholder="Ex. Rua jose pereira de assis, 445">
-
-          <label for="email">E-mail</label>
-          <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Ex. gui@hotmail.com">
-
-          <label for="telefone">Telefone</label>
-          <input type="tel" class="form-control" id="number" aria-describedby="telefone" placeholder="Ex. (15) 98844567">
         </div>
         <br>
         <div class="form-group">

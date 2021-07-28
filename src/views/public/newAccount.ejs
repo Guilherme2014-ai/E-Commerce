@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/newAccount.css"> <%# Aqui carrega o css da da pagina 'users' %> 
+<title>Cadastro</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+<main>
+    <section>
+        <form action="/cadastro" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nome</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Coloque aqui o seu Nome" required>
+            </div><br>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="Coloque aqui o seu Melhor Email" required>
+              <small id="emailHelp" class="form-text text-muted">Email Para Contato</small>
+            </div><br>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Telefone</label>
+                <input type="tel" class="form-control" name="number" id="number" aria-describedby="number" placeholder="Ex. 15 98988445" required>
+                <small id="emailHelp" class="form-text text-muted">Telefone Para Contato</small>
+            </div><br>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Senha</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+              <small id="emailHelp" class="form-text text-muted">So voce Vera essa senha</small>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Criar Conta</button>
+          </form>
+    </section>
+</main>
+
+
+<script src="/js/inventory.js"></script>
+<%- include('../partials/scripts.ejs') %>

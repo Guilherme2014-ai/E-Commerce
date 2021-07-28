@@ -1,4 +1,5 @@
 const categoriesModel = require('../models/categories');
+const usersModel = require('../models/users');
 const inventoryModel = require('../models/inventory');
 const categoriesFactory = require('../factory/categories');
 const ValidationService = require('../services/validation');
@@ -93,8 +94,11 @@ class Public{
     async Buy(req,res){
         try{
 
-            const { address,email,number,quantity } = req.body;
-            const content = [ address,number,email,quantity ]
+            const { address,quantity } = req.body;
+            const { email,number } = req.session;
+            console.log(req.session)
+
+            const content = [ address,quantity ]
 
             const HasEmpetyItem = ValidationService.HasEmpetyItem(content);
             const HasInvalidItem = ValidationService.HasInvalidItem(content);
@@ -110,6 +114,53 @@ class Public{
                 res.sendStatus(400);
                 return;
             };
+
+        } catch(err){
+            console.error(err);
+            res.sendStatus(500);
+            res.status(500);
+        };
+    };
+    async newAccount(req,res){
+        try{
+
+            const categories = await categoriesModel.FindAll();
+
+            res.render('public/newAccount', { categories });
+
+        } catch(err){
+            console.error(err);
+            res.sendStatus(500);
+            res.status(500);
+        };
+    };
+    async newAccount_POST(req,res){
+        try{
+
+            const { name,email,number,password } = req.body;
+            const user = { name,email,number,password }
+
+            console.log(user)
+            const content = [ name,email,number,password ];
+
+            const HasEmpetyItem = ValidationService.HasEmpetyItem(content);
+            const HasInvalidItem = ValidationService.HasInvalidItem(content);
+
+            const ok = HasEmpetyItem == false && HasInvalidItem == false;
+
+            if(ok){
+
+                const wasCreated = await usersModel.Create(user);
+
+                if(wasCreated == 500){
+                    res.status(500);
+                    res.sendStatus(500);
+                    return;
+                };
+
+                res.redirect('/');
+
+            }else{}
 
         } catch(err){
             console.error(err);

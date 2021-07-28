@@ -12,10 +12,11 @@ class Validation {
         return true
     }
 
+
     HasEmpetyItem(array){
         let res = false;
         array.forEach(item => {
-            const arrItem = String(val).split("");
+            const arrItem = String(array).split("");
             if(arrItem.every(a => a == " " || item.length == 0 || item == " " || item == "")){
                 console.log(item);
                 res = true;
