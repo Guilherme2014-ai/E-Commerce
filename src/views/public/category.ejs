@@ -1,7 +1,29 @@
-<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
-<link rel="stylesheet" href="/scss/css/category.css"> <%# Aqui carrega o css da da pagina 'users' %> 
-<title><%= category.name %></title>
-<%- include('../partials/header-end.ejs') %> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/857701858655076402/868929298113912892/1627239188408.png">    
+    <link rel="stylesheet" href="/scss/css/category.css"> <%# Aqui carrega o css da da pagina 'users' %> 
+    <title><%= category.name %></title>
+    <link href="/scss/css/nav.css" rel="stylesheet">
+</head>
+<body onload="startContent('<%= JSON.stringify(category.inventory) %>')">
 
 
 <%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
@@ -21,48 +43,9 @@
         </div>
         <br><br>
 
-        <ul class="grid">
-            <% var n = 0 %>
-            <% var i = 1 %>
 
-            <li onclick="liClick('<%= category.inventory[0].id %>')" class="large" style="background-image: url('<%= category.inventory[0].img %>');">
-                <h1><%= category.inventory[0].name %></h1><br><br>
-                <p><%= category.inventory[0].desc %></p>
-                <h3><strong><%= category.inventory[0].price %> R$</strong></h3>
-            </li>
+        <ul class="grid" id="grid"> </ul>
 
-            <% var looks = category.inventory.slice(1,category.inventory.length) %>
-
-            <% looks.forEach(function(category) { %>
-                <% if(i == 0){ %>
-                    <li onclick="liClick('<%= category.id %>')" class="large" style="background-image: url('<%= category.img %>');">
-                        <h1><strong><%= category.name %></strong></h1><br><br>
-                        <p><strong><%= category.desc %></strong></p>
-                        <h3><strong><%= category.price %> R$</strong></h3>
-                    </li>
-
-                    <% if(n == 2){ %>
-                        <% n = 0 %>
-                        <% i = 1 %>
-                    <% } %>
-                    <% n = 2 %>
-                <% }else{ %>
-                    <li onclick="liClick('<%= category.id %>')" class="small" style="background-image: url('<%= category.img %>');">
-                        <h1><strong><%= category.name %></strong></h1><br><br>
-                        <p><strong><%= category.desc %></strong></p>
-                        <h3><strong><%= category.price %> R$</strong></h3>
-                    </li>
-
-                    <% if(n == 1){ %>
-                        <% n = 0 %>
-                        <% i = 0 %>
-                    <% } %>
-                    <% n++ %>
-                <% } %>
-            <% }) %>
-
-            <%# 1* small | large 2x & small 2x loop%> 
-        </ul>
 
     </section><br>
 
@@ -74,6 +57,67 @@
         window.location.href = `/inventory/${id}`
     }
 
+    function startContent(params) {
+        var ul = document.getElementById('grid')
+        var inventoryRaw = JSON.parse(params)
+
+        var n = 0
+        var i = true
+
+        var inventory = inventoryRaw.slice(1, inventoryRaw.length)
+
+        ul.innerHTML = `
+        <li class="small" style="background-image: url('${inventoryRaw[0].img}');">
+            <h1><strong>${inventoryRaw[0].name}</strong></h1><br><br>
+            <p>${inventoryRaw[0].desc}</p>
+            <h3><strong>${inventoryRaw[0].price} R$</strong></h3>
+            <p>asd</p>
+        </li>
+        `
+
+        inventory.forEach(look => {
+            if(!i){
+                ul.innerHTML += `
+                <li onclick="liClick(${look.id})" class="small" style="background-image: url('${look.img}');">
+                    <h1><strong>${look.name}</strong></h1><br><br>
+                    <p>${look.desc}</p>
+                    <h3><strong>${look.price} R$</strong></h3>
+                </li>
+                `
+
+                if(n == 1){
+                    n = 0
+                    i = true
+                }else{
+                    n++
+                }
+            }else{
+                ul.innerHTML += `
+                <li onclick="liClick(${look.id})" class="large" style="background-image: url('${look.img}');">
+                    <h1><strong>${look.name}</strong></h1><br><br>
+                    <p>${look.desc}</p>
+                    <h3><strong>${look.price} R$</strong></h3>
+                </li>
+                `
+
+                if(n == 1){
+                    n = 0
+                    i = false
+                    console.log(i)
+                }else{
+                    n++
+                }
+            }
+        });
+    }
+
+
+
 </script>
 
-<%- include('../partials/scripts.ejs') %>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/04602e297a.js" crossorigin="anonymous"></script>
+</html>

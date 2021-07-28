@@ -23,7 +23,7 @@ main {
             cursor: default;
         }
         h1:hover {
-            font-size: 200px;
+            font-size: 170px;
             text-shadow: black -1px 5px 10px;
             transition: 100ms;
         }
@@ -74,6 +74,64 @@ main {
         .grid li.small{ flex-basis: 37%; }
         .grid li.large{ flex-basis: 59%; }
         .grid li:hover { flex-grow: 0.1; transition: 100ms; cursor: pointer; }
+    }
+
+}
+
+@media(max-width: 1124px) {
+    header {
+        border-bottom: solid black 1px;
+    }
+    main {
+        margin-top: 200px;
+    }
+    .image {
+        div {
+            h1 {
+                font-size: 70px;
+            }
+            h2 {
+                font-size: 20px;
+                margin-left: 310px;
+            }
+        }
+    }
+}
+@media(max-width: 1000px) {
+    .image {
+        h1 {            
+            strong {
+                font-size: 100px;
+            }
+        }
+    }
+    header {
+        nav {
+            .items {
+                margin-right: 370px;
+            }
+        }
+    }
+}
+@media(max-width: 628px) {
+    header {
+        nav {
+            .items {
+                margin-right: 385px;
+            }
+        }
+    }
+    
+    main {
+        margin-top: 300px;
+    }
+
+    .image {
+        h1 {            
+            strong {
+                font-size: 60px;
+            }
+        }
     }
 
 }
