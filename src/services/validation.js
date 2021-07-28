@@ -1,8 +1,7 @@
 class Validation {
     isEmpyt(val){
-        val = String(val).split("");
-        console.log(val)
-        if(val.every(a => a == " " || val.length == 0 || val == "" || val == "")){ return true }
+        const arrVal = String(val).split("");
+        if(arrVal.every(a => a == " " || val.length == 0 || val == " " || val == "")){ return true }
         return false
     }
     isValid(val){
@@ -11,6 +10,30 @@ class Validation {
             return false
         }
         return true
+    }
+
+    HasEmpetyItem(array){
+        let res = false;
+        array.forEach(item => {
+            const arrItem = String(val).split("");
+            if(arrItem.every(a => a == " " || item.length == 0 || item == " " || item == "")){
+                console.log(item);
+                res = true;
+            };
+        });
+
+        return res;
+    }
+    HasInvalidItem(array){
+        let res = false;
+        
+        array.forEach(item => {
+            if(item == undefined){
+                res = true;
+            };
+        });
+
+        return res
     }
 }
 

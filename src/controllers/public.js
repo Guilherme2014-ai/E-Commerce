@@ -90,6 +90,33 @@ class Public{
             res.status(500);
         };
     };
+    async Buy(req,res){
+        try{
+
+            const { address,email,number,quantity } = req.body;
+            const content = [ address,number,email,quantity ]
+
+            const HasEmpetyItem = ValidationService.HasEmpetyItem(content);
+            const HasInvalidItem = ValidationService.HasInvalidItem(content);
+
+            const ok = HasEmpetyItem == false && HasInvalidItem == false;
+
+            if(ok){
+
+                //later than sessions
+
+            }else{
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+
+        } catch(err){
+            console.error(err);
+            res.sendStatus(500);
+            res.status(500);
+        };
+    };
 
 };
 
