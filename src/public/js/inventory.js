@@ -19,6 +19,6 @@ function buyList() {
           <input type="number" class="form-control" id="quantity" placeholder="Ex. 4">
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Comprar</button>
+        <button type="submit" class="btn btn-primary form-control">Comprar</button>
     </form>`
 }

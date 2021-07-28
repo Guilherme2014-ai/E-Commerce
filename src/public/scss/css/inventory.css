@@ -44,6 +44,12 @@ main section {
   font-family: 'Lexend', sans-serif;
 }
 
+main section form {
+  background-color: #eee1f1;
+  padding: 15px;
+  border-radius: 5px;
+}
+
 main section .info {
   text-align: center;
 }
