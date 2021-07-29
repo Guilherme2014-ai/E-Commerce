@@ -140,7 +140,6 @@ class Public{
             const { name,email,number,password } = req.body;
             const user = { name,email,number,password }
 
-            console.log(user)
             const content = [ name,email,number,password ];
 
             const HasEmpetyItem = ValidationService.HasEmpetyItem(content);
@@ -158,14 +157,81 @@ class Public{
                     return;
                 };
 
-                res.redirect('/');
+                res.redirect('/login');
 
-            }else{}
+            }else{
+                res.status(400);
+                res.sendStatus(400);
+            }
 
         } catch(err){
             console.error(err);
             res.sendStatus(500);
             res.status(500);
+        };
+    };
+    async Login(req,res){
+        try{
+
+            const categories = await categoriesModel.FindAll();
+            res.render('public/login', { categories });
+
+        } catch(err){
+            console.error(err);
+            return 500;
+        };
+    };
+    async Login_POST(req,res){
+        try{
+
+            const { email,password } = req.body;
+
+            const emailIsEmpty = ValidationService.isEmpyt(email);
+            const emailIsValid = ValidationService.isValid(email);
+
+            const passwordIsEmpty = ValidationService.isEmpyt(password);
+            const passwordIsValid = ValidationService.isValid(password); 
+
+            const okEmail = emailIsEmpty == false && emailIsValid == true;
+            const okPassword = passwordIsEmpty == false && passwordIsValid == true;
+
+
+            if(okEmail == true && okPassword == true){
+
+                const login = await usersModel.Login(email,password);
+
+                if(login == 500){
+                    res.status(500);
+                    res.sendStatus(500);
+                    return;
+                }
+                if(login == 404){
+                    res.status(404);
+                    res.sendStatus(404);
+                    return;
+                }
+                if(login == 401){
+                    res.status(401);
+                    res.sendStatus(401);
+                    return;
+                }
+                
+                req.session.user = {
+                    name: login["name"],
+                    email: login["email"],
+                    number: login["number"]
+                }
+
+                res.redirect('/')
+
+            }else{
+                res.status(400);
+                res.sendStatus(400);
+            }
+
+        } catch(err){
+            console.error(err);
+            return 500;
         };
     };
 

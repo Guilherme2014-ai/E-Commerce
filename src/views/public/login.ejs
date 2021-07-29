@@ -1,0 +1,29 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/newAccount.css"> <%# Aqui carrega o css da da pagina 'users' %> 
+<title>Login</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+<main>
+    <section>
+        <form action="/login" method="POST">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="Seu Email" required>
+            </div><br>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Senha</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Sua Senha" required>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Login</button>
+          </form>
+    </section>
+</main>
+
+
+<script src="/js/inventory.js"></script>
+<%- include('../partials/scripts.ejs') %>

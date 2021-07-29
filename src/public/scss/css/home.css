@@ -139,6 +139,9 @@ body {
   header nav .items {
     margin-right: 370px;
   }
+  main {
+    margin-top: 300px;
+  }
 }
 
 @media (max-width: 628px) {
