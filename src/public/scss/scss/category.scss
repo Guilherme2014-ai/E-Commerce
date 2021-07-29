@@ -112,6 +112,9 @@ main {
             }
         }
     }
+    main {
+        margin-top: 258px;
+    }
 }
 @media(max-width: 628px) {
     header {
@@ -121,11 +124,6 @@ main {
             }
         }
     }
-    
-    main {
-        margin-top: 300px;
-    }
-
     .image {
         h1 {            
             strong {

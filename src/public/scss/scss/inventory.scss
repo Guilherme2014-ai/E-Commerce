@@ -58,6 +58,9 @@ main {
             }
         }
     }
+    main {
+        margin-top: 280px;
+    }
 }
 @media(max-width: 628px) {
     header {
@@ -69,7 +72,6 @@ main {
     }
     
     main {
-        margin-top: 300px;
         section {
             .image {
                 height: 50vh;

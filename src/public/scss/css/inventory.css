@@ -78,14 +78,14 @@ main section .image {
   header nav .items {
     margin-right: 370px;
   }
+  main {
+    margin-top: 280px;
+  }
 }
 
 @media (max-width: 628px) {
   header nav .items {
     margin-right: 385px;
-  }
-  main {
-    margin-top: 300px;
   }
   main section .image {
     height: 50vh;
