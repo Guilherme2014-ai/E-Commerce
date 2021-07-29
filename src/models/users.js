@@ -44,15 +44,13 @@ class Users{
 
             const auth = await bcrypt.compare(password,user["password"]);
 
-            if(auth){ return user }else{
-                return 401
-            }
+            if(auth){ return user }else{ return 401 }
 
         } catch(err){
             console.error(err);
             return 500;
         }
-    }
+    };
 
 };
 

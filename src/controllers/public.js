@@ -1,6 +1,7 @@
-const categoriesModel = require('../models/categories');
 const usersModel = require('../models/users');
+const ordersModel = require('../models/orders');
 const inventoryModel = require('../models/inventory');
+const categoriesModel = require('../models/categories');
 const categoriesFactory = require('../factory/categories');
 const ValidationService = require('../services/validation');
 
@@ -10,6 +11,7 @@ class Public{
     async Index(req,res){
         try {
             
+            console.log(req.session)
             const categories = await categoriesModel.FindAll();
 
             res.render("public/index.ejs", { categories });
@@ -95,25 +97,35 @@ class Public{
         try{
 
             const { address,quantity } = req.body;
-            const { email,number } = req.session;
-            console.log(req.session)
+            if(req.session.user){
+                const { email,number,name } = req.session.user;
 
-            const content = [ address,quantity ]
-
-            const HasEmpetyItem = ValidationService.HasEmpetyItem(content);
-            const HasInvalidItem = ValidationService.HasInvalidItem(content);
-
-            const ok = HasEmpetyItem == false && HasInvalidItem == false;
-
-            if(ok){
-
-                //later than sessions
-
+                const content = [ address,quantity ]
+    
+                const HasEmpetyItem = ValidationService.HasEmpetyItem(content);
+                const HasInvalidItem = ValidationService.HasInvalidItem(content);
+    
+                const ok = HasEmpetyItem == false && HasInvalidItem == false;
+    
+                console.log(`ok: ${ok}`)
+    
+                if(ok){
+    
+                    const order = { email,number,name,address,quantity };
+    
+                    await ordersModel.Create(order)
+    
+                    res.redirect('/');
+    
+                }else{
+                    res.status(400);
+                    res.sendStatus(400);
+                    return;
+                };
             }else{
-                res.status(400);
-                res.sendStatus(400);
-                return;
-            };
+                res.redirect('/cadastro');
+                console.log("User Dosn't exists !");
+            }
 
         } catch(err){
             console.error(err);
@@ -204,17 +216,17 @@ class Public{
                     res.status(500);
                     res.sendStatus(500);
                     return;
-                }
+                };
                 if(login == 404){
                     res.status(404);
                     res.sendStatus(404);
                     return;
-                }
+                };
                 if(login == 401){
                     res.status(401);
                     res.sendStatus(401);
                     return;
-                }
+                };
                 
                 req.session.user = {
                     name: login["name"],
