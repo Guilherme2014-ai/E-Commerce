@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/looks.css"> <%# Aqui carrega o css da da pagina 'users' %>
+<title>Roupas</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+<main>
+    <div class="buttons" style="margin-left: 50px;">
+
+        <a href="/admin/look"><button class="btn btn-success"><i class="fas fa-plus"></i> Nova Peca de Roupa</button></a><br>
+        <a href="#categoria"><button class="btn btn-warning" style="margin-top: 6px;"><i class="fas fa-plus"></i> Nova Categoria</button></a>
+
+    </div>
+
+    <section>
+        <% inventory.forEach(look => { %>
+            <div class="card" style="width: 18rem;">
+                <div class="image" style="background-image: url('<%= look.img %>');"></div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= look.name %></h5>
+                  <p class="card-text"><%= look.desc %></p>
+
+                  <p><strong><%= look.price %> R$</strong></p>
+                </div>
+            </li>
+                </ul>
+                <div class="card-body">
+                  <a href="/admin/editar/look/<%= look.id %>" class="card-link"><button class="btn btn-outline-warning">Editar</button></a>
+                  <a href="/admin/deletar/look/<%= look.id %>" class="card-link"><button class="btn btn-outline-danger">Deletar</button></a>
+                </div>
+            </div>        
+        <% }) %>
+    </section>
+</main>
+
+
+<script src="/js/inventory.js"></script>
+<%- include('../partials/scripts.ejs') %>

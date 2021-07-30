@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/inventoryEdit.css"> <%# Aqui carrega o css da da pagina 'users' %>
+<title>Editar</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+<main>
+    <section>
+        <form action="/admin/editar/look" method="POST">
+            <input type="hidden" name="id" id="id" value="<%= look.id %>">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Coloque da Roupa" value="<%= look.name %>" required>
+            </div><br>
+            <div class="form-group">
+              <label for="img">Imagem</label>
+              <input type="text" class="form-control" name="img" id="img" aria-describedby="img" placeholder="Foto da Roupa" value="<%= look.img %>" required>
+            </div><br>
+            <div class="form-group">
+                <label for="price">Preco</label>
+                <input type="text" class="form-control" name="price" id="price" placeholder="Preco da Roupa" value="<%= look.price %>">
+            </div><br>
+            <div class="form-group">
+                <label for="desc">Descricao</label>
+                <textarea class="form-control" name="desc" id="desc" cols="30" rows="10" placeholder="Descricao da Roupa" required><%= look.desc %></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Editar</button>
+          </form>
+    </section>
+</main><br>
+
+
+<script src="/js/inventory.js"></script>
+<%- include('../partials/scripts.ejs') %>

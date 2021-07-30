@@ -1,0 +1,48 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/inventoryEdit.css"> <%# Aqui carrega o css da da pagina 'users' %>
+<title>Nova Roupa</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+<main>
+    <section>
+        <form action="/admin/look" method="POST">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Coloque o Nome da Roupa" required>
+            </div><br>
+            <div class="form-group">
+              <label for="img">Imagem</label>
+              <input type="text" class="form-control" name="img" id="img" aria-describedby="img" placeholder="Foto da Roupa" required>
+            </div><br>
+            <div class="form-group">
+                <label for="price">Preco</label>
+                <input type="text" class="form-control" name="price" id="price" placeholder="Preco da Roupa">
+            </div><br>
+            <div class="form-group">
+                <label for="categories">Categoria</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <% if (categories.length == 0) { %>
+                        <option>Sem Categorias</option>                     
+                    <% }else{ %>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>"><%= category.name %></option>                    
+                        <% }) %>
+                    <% } %>
+                </select>
+            </div><br>
+            <div class="form-group">
+                <label for="desc">Descricao</label>
+                <textarea class="form-control" name="desc" id="desc" cols="30" rows="10" placeholder="Descricao da Roupa" required></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Criar</button>
+          </form>
+    </section>
+</main><br>
+
+
+<%- include('../partials/scripts.ejs') %>

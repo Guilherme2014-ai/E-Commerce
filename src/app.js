@@ -26,3 +26,5 @@ const app = express();
     app.use("/", require('./routes/public'));
 
 module.exports = app;
+
+// Controle de Administracao, moderacao de imagem, Post do "Create Look", View e Post do "Create Category", Deletar e Editar Users.
