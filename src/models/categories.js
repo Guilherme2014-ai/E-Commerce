@@ -9,7 +9,6 @@ class Categories{
             
         } catch(err) { console.error(err) }
     };
-
     async FindOne(slug){
         try {
 
@@ -24,6 +23,16 @@ class Categories{
             if(category.length == 0 || category == undefined){ return 404 };
 
             return category;
+
+        } catch(err) {
+            console.error(err);
+            return 500;
+        }
+    };
+    async Create(data){
+        try {
+
+            await knex.insert(data).table('categories');
 
         } catch(err) {
             console.error(err);

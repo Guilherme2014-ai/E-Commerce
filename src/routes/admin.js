@@ -15,8 +15,8 @@ router.post('/editar/look', adminController.EditLook_POST);
 router.get('/look', adminController.InventoryCreate);
 router.post('/look', adminController.InventoryCreate_POST);
 
-/*router.get('/category', adminController.);*/
-/*router.post('/category', adminController.);*/
+router.get('/categoria', adminController.CategoryCreate);
+router.post('/categoria', adminController.CategoryCreate_POST);
 
 
 module.exports = router;

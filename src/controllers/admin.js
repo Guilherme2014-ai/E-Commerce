@@ -165,6 +165,48 @@ class Admins{
             res.sendStatus(500);
         };
     };
+    async CategoryCreate(req,res){
+        try{
+            
+            const categories = await CategoriesModel.FindAll();
+
+            res.render('admin/categoryCreate', { categories })
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        };
+    };
+    async CategoryCreate_POST(req,res){
+        try{
+            
+            const { name,img } = req.body;
+
+            if(ValidationService.isEmpyt(name) == true || ValidationService.isEmpyt(img) == true){
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+
+            const data = { name,img,slug: String(String(name).replace(' ','-').toLowerCase()) }
+
+            const saved = await CategoriesModel.Create(data);
+
+            if(saved == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            res.redirect('/admin/looks');
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        };
+    };
 
 };
 
