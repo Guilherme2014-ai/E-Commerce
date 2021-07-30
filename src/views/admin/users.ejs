@@ -23,7 +23,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Role</th>
+                <th scope="col">Rule</th>
                 <th scope="col">Açoes</th>
         
             </tr>
@@ -41,8 +41,8 @@
                         <% } %> 
                         
                         <td>
-                            <a href="#editar"><div class="btn btn-outline-warning">Editar</div></a>
-                            <div class="btn btn-outline-danger">Deletar</div>
+                            <a href="/admin/editar/user/<%= user.email %>"><div class="btn btn-outline-warning">Editar</div></a>
+                            <a href="/admin/deletar/user/<%= user.id %>"><div class="btn btn-outline-danger">Deletar</div></a>
                         </td>
                     </tr>
                 <% }) %>

@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/userEdit.css"> <%# Aqui carrega o css da da pagina 'users' %>
+<title>Editar</title>
+<%- include('../partials/header-end.ejs') %>
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %>
+
+
+<main>
+    <section>
+        <form action="/admin/editar/user/<%= user.id %>" method="POST">
+            <input type="hidden" name="id" id="id" value="<%= user.id %>">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Seu Nome" value="<%= user.name %>" required>
+            </div><br>
+            <div class="form-group">
+              <label for="img">Email</label>
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="Seu Email" value="<%= user.email %>" required>
+            </div><br>
+            <div class="form-group">
+                <label for="price">Rule</label>
+                <select class="form-control" name="rule" id="rule">
+                    <% if (user.rule == 1) { %>
+                        <option value="1">Admin</option>
+                        <option value="0">Normal</option>
+                    <% }else{ %>
+                        <option value="0">Normal</option>
+                        <option value="1">Admin</option>
+                    <% } %>
+                </select>
+            </div><br>
+            <div class="form-group">
+                <label for="desc">Telefone</label>
+                <textarea class="form-control" name="number" id="number" cols="30" rows="10" placeholder="Numero do User" required><%= user.number %></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Editar</button>
+          </form>
+    </section>
+</main><br>
+
+
+<script src="/js/inventory.js"></script>
+<%- include('../partials/scripts.ejs') %>

@@ -18,8 +18,8 @@ const app = express();
         resave: false,
         saveUninitialized: false,
         cookie: { maxAge: 60000 } // || secure: true
-    }))
-    app.use(flash())
+    }));
+    app.use(flash());
 
 // Routes
     app.use("/admin", require('./routes/admin'));
@@ -27,4 +27,4 @@ const app = express();
 
 module.exports = app;
 
-// Controle de Administracao, moderacao de imagem, Post do "Create Look", View e Post do "Create Category", Deletar e Editar Users.
+// Controle de Administracao e moderacao de imagem, Views de compras.

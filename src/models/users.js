@@ -19,7 +19,7 @@ class Users{
             console.error(err);
             return 500;
         }
-    }
+    };
     async Create(user){
         try {
             
@@ -34,6 +34,16 @@ class Users{
             console.error(err);
             return 500;
         };
+    };
+    async DeleteUser(id){
+        try{
+
+            await knex.delete().where('id',id).table('users');
+
+        } catch(err){
+            console.error(err);
+            return 500;
+        }
     };
     async Login(email,password){
         try{
@@ -50,6 +60,16 @@ class Users{
             console.error(err);
             return 500;
         }
+    };
+    async updateUser(id,data){
+        try{
+
+            await knex.update(data).where('id',id).table('users');
+
+        } catch(err){
+            console.error(err);
+            return 500;
+        };
     };
 
 };

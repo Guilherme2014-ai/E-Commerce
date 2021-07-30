@@ -207,7 +207,100 @@ class Admins{
             res.sendStatus(500);
         };
     };
+    async UserDelete(req,res){
+        try{
+
+            const { id } = req.params;
+
+            const isValid = id != undefined && id != "" && id != " ";
+
+            if(isValid == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            if(isValid){
+                const deleted = await UsersModel.DeleteUser(id);
+                if(deleted == 500){
+                    res.status(500);
+                    res.sendStatus(500);
+                    return;
+                };
+                res.redirect('/admin/users')
+            }else{
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        }
+    };
+    async userEdit(req,res){
+        try{
+
+            const { email } = req.params;
+            const categories = await CategoriesModel.FindAll();
+            const user = await UsersModel.FindOne(email);
+
+            if(user == 404){
+                res.status(404);
+                res.sendStatus(404);
+                return;
+            };
+            if(user == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            res.render('admin/userEdit', { categories,user });
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        }
+    };
+    async userEdit_POST(req,res){
+        try{
+
+            const { id,name,email,rule,number } = req.body;
+            const data = { name,email,rule,number }
+
+            if(id == "" || id == " "){
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+            if(ValidationService.isEmpyt(name) == true || ValidationService.isEmpyt(email) == true || ValidationService.isEmpyt(rule) == true || ValidationService.isEmpyt(number) == true){
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+
+            const userUpdate = await UsersModel.updateUser(id,data);
+
+            if(userUpdate == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            res.redirect('/admin/users');
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        }
+    };
 
 };
 
 module.exports = new Admins();
+
