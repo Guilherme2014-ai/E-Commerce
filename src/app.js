@@ -27,4 +27,4 @@ const app = express();
 
 module.exports = app;
 
-// Controle de Administracao e moderacao de imagem, Views de compras.
+// Controle de Administracao e moderacao de imagem, Views de compras com socket io.

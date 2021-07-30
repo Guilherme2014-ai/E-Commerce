@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs') %> <%# Aqui carrega o css da nav %> 
+<link rel="stylesheet" href="/scss/css/orders.css"> <%# Aqui carrega o css da da pagina 'users' %>
+<title>Roupas</title>
+<%- include('../partials/header-end.ejs') %> 
+
+
+<%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
+
+
+<main>
+    <section>
+        <% orders.forEach(order => { %>
+              <div class="card" style="width: 18rem;">
+                <div class="image" style="background-image: url('<%= order.imageInventory %>');">
+                  <h1><strong><%= order.nameInventory %></strong></h1>                
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= order.name %></h5>
+                  <p class="card-text">E-mail: <%= order.email %></p>
+                  <p class="card-text">Telefone: <%= order.number %></p>
+                  <p class="card-text">Endereco: <%= order.address %></p>
+                  <p class="card-text">Quantidade: <strong><%= order.quantity %></strong></p>
+
+                  <p><strong></strong></p>
+                </div>
+            </li>
+                </ul>
+                <div class="card-body">
+                  <a class="card-link"><button class="btn btn-success">Entregue &nbsp; <i class="fas fa-truck" aria-hidden="true"></i></button></a>
+                </div>
+            </div>
+        <% }) %>
+    </section>
+</main>
+
+
+<script src="/js/inventory.js"></script>
+<%- include('../partials/scripts.ejs') %>

@@ -10,7 +10,20 @@ class Users{
         } catch(err){
             console.error(err);
             return 500;
-        }
+        };
+    };
+    async FindAll(){
+        try{
+
+            return await knex
+            .select(['orders.*','inventory.name as nameInventory','inventory.img as imageInventory'])
+            .innerJoin('inventory','inventory.id','orders.order_id')
+            .table('orders');
+
+        } catch(err){
+            console.error(err);
+            return 500;
+        };
     };
 
 };

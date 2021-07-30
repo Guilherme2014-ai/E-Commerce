@@ -2,6 +2,7 @@ const CategoriesModel = require('../models/categories');
 const InvetoryModel = require('../models/inventory');
 const InvetoryFactory = require('../factory/inventories');
 const ValidationService = require('../services/validation');
+const OrdersModel = require('../models/orders');
 const UsersModel = require('../models/users');
 
 class Admins{
@@ -298,6 +299,26 @@ class Admins{
             res.status(500);
             res.sendStatus(500);
         }
+    };
+    async Orders(req,res){
+        try{
+
+            const categories = await CategoriesModel.FindAll();
+            const orders = await OrdersModel.FindAll();
+
+            if(orders == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            res.render('admin/orders', { categories,orders })
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        };
     };
 
 };

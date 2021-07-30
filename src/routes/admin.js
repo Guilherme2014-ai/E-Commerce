@@ -11,6 +11,8 @@ router.get('/deletar/look/:id', adminController.DeleteLook);
 router.get('/editar/look/:id', adminController.EditLook);
 router.get('/look', adminController.InventoryCreate);
 router.get('/categoria', adminController.CategoryCreate);
+router.get('/orders', adminController.Orders)
+
 router.post('/categoria', adminController.CategoryCreate_POST);
 router.post('/editar/user/:id', adminController.userEdit_POST);
 router.post('/editar/look', adminController.EditLook_POST);
@@ -18,4 +20,3 @@ router.post('/look', adminController.InventoryCreate_POST);
 
 
 module.exports = router;
-

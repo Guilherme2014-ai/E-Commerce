@@ -11,6 +11,11 @@
 <main>
     <div class="title"><h1>Administraçao</h1><hr></div><br><br>
 
+    <section class="orders" id="orders">
+        <i class="fas fa-truck"></i>
+        <h1>Pedidos</h1>
+    </section>
+    <br>
     <section class="settings" id="settings">
         <i class="fas fa-users"></i>
         <h1>Usuários</h1>
@@ -25,14 +30,19 @@
 
 
 <script>
+    // Exportar isso
     const settings = document.getElementById('settings');
     const looks = document.getElementById('looks');
+    const orders = document.getElementById('orders');
 
     settings.addEventListener('click', function(){
         window.location.href = "/admin/users";
     });
     looks.addEventListener('click', function(){
         window.location.href = "/admin/looks";
+    });
+    orders.addEventListener('click', function(){
+        window.location.href = "/admin/orders";
     });
 </script>
 <%- include('../partials/scripts.ejs') %>

@@ -34,7 +34,6 @@ section {
   text-align: center;
   font-size: 3.4rem;
   align-items: center;
-  background-color: #6385eb;
   width: 98%;
   height: 300px;
   border-radius: 9px;
@@ -80,6 +79,14 @@ div hr:hover {
 /* Classes */
 .looks {
   background-color: #eb6363;
+}
+
+.orders {
+  background-color: #d6d637;
+}
+
+.settings {
+  background-color: #6385eb;
 }
 
 @media (max-width: 1000px) {
