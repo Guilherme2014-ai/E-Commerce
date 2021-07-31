@@ -7,11 +7,19 @@
 <%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
 
 
-
 <main>
+    <% if (user == undefined) { %>
+        <input type="hidden" name="user" id="user" value="desconected">
+    <% }else{ %>
+        <input type="hidden" name="user" id="user" value="<%= JSON.stringify(user) %>">
+    <% } %>
+
+    <input type="hidden" name="imageInvetory" id="imageInvetory" value="<%= look.img %>">
+    <input type="hidden" name="nameInvetory" id="nameInvetory" value="<%= look.name %>">
+
+    <input type="hidden" name="id" id="id" value="<%= look.id %>">
     <section>
         <div class="image" style="background-image: url('<%= look.img %>'); background-position: center; background-size: cover;"></div>
-
 
         <div class="info">
             <h1><strong><%= look.name %> - <%= look.price %> R$</strong></h1>
@@ -22,11 +30,10 @@
                     <div class="btn btn-success">Comprar</div>
                 </div>
             </div>
-
         </div>
     </section>
 </main>
 
-
+<script src="/socket.io/socket.io.js"></script>
 <script src="/js/inventory.js"></script>
 <%- include('../partials/scripts.ejs') %>

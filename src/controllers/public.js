@@ -79,8 +79,10 @@ class Public{
                     return;
                 }
     
-    
-                res.render('public/inventory', { look: look[0],categories });
+                const user = req.session.user;
+                console.log(user);
+                
+                res.render('public/inventory', { look: look[0],categories,user });
             }else{
                 res.status(400);
                 res.sendStatus(400);
@@ -96,7 +98,7 @@ class Public{
     async Buy(req,res){
         try{
 
-            const { address,quantity } = req.body;
+            const { address,quantity,orderId } = req.body;
             if(req.session.user){
                 const { email,number,name } = req.session.user;
 
@@ -107,14 +109,17 @@ class Public{
     
                 const ok = HasEmpetyItem == false && HasInvalidItem == false;
     
-                console.log(`ok: ${ok}`)
-    
                 if(ok){
     
-                    const order = { email,number,name,address,quantity };
-    
-                    await ordersModel.Create(order)
-    
+                    const order = { email,number,name,address,quantity,order_id: orderId };
+                    const saved = await ordersModel.Create(order);
+                    
+                    if(saved == 500){
+                        res.status(500);
+                        res.sendStatus(500);
+                        return;
+                    };
+
                     res.redirect('/');
     
                 }else{

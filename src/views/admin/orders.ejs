@@ -8,7 +8,7 @@
 
 
 <main>
-    <section>
+    <section id="content">
         <% orders.forEach(order => { %>
               <div class="card" style="width: 18rem;">
                 <div class="image" style="background-image: url('<%= order.imageInventory %>');">
@@ -34,5 +34,6 @@
 </main>
 
 
-<script src="/js/inventory.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/orders.js"></script>
 <%- include('../partials/scripts.ejs') %>

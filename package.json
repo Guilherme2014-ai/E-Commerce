@@ -17,6 +17,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.2",
     "knex": "^0.21.2",
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "socket.io": "^4.1.3"
   }
 }

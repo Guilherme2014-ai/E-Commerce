@@ -2,7 +2,10 @@ const session = require('express-session');
 const flash = require('express-flash');
 const express = require('express');
 const path = require('path');
+
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 // Config
     app.set("views", path.join(__dirname, 'views'));
@@ -21,10 +24,17 @@ const app = express();
     }));
     app.use(flash());
 
+// Socket IO
+    io.on('connection', socket => {
+        socket.on('buy', order => {
+            socket.broadcast.emit('newOrder', order);
+            socket.emit('newOrder', order);
+        })
+    })
 // Routes
     app.use("/admin", require('./routes/admin'));
     app.use("/", require('./routes/public'));
 
-module.exports = app;
+module.exports = server;
 
-// Controle de Administracao e moderacao de imagem, Views de compras com socket io.
+// Controle de Administracao e moderacao de imagem.
