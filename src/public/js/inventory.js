@@ -21,8 +21,6 @@ function buyList() {
     </form>`
 }
 
-
-
 function sendBuy () {
   const userChild = document.getElementById('user');
 

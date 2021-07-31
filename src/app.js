@@ -37,4 +37,4 @@ const io = require('socket.io')(server);
 
 module.exports = server;
 
-// Controle de Administracao e moderacao de imagem.
+// Controle de Administracao, Responsividade e moderacao de imagem.
