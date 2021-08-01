@@ -16,6 +16,8 @@ class Admins{
 
         } catch(err){
             console.error(err);
+            res.status(500);
+            res.sendStatus(500);
         };
     };
     async Users(req,res){

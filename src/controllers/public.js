@@ -10,14 +10,15 @@ class Public{
 
     async Index(req,res){
         try {
-            
-            console.log(req.session)
+        
             const categories = await categoriesModel.FindAll();
 
             res.render("public/index.ejs", { categories });
 
         } catch(err){
             console.error(err);
+            res.status(500);
+            res.sendStatus(500);
         }
     };
     async Category(req,res){
