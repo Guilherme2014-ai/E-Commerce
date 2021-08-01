@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const adminController = require('../controllers/admin');
 
-
+// GET's
 router.get('/', adminController.Index);
 router.get('/users', adminController.Users);
 router.get('/looks', adminController.Looks);
@@ -13,6 +13,7 @@ router.get('/look', adminController.InventoryCreate);
 router.get('/categoria', adminController.CategoryCreate);
 router.get('/orders', adminController.Orders)
 
+// POST's
 router.post('/categoria', adminController.CategoryCreate_POST);
 router.post('/editar/user/:id', adminController.userEdit_POST);
 router.post('/editar/look', adminController.EditLook_POST);

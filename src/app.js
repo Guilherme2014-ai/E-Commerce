@@ -2,6 +2,8 @@ const session = require('express-session');
 const flash = require('express-flash');
 const express = require('express');
 const path = require('path');
+const auth = require('./middlewares/auth');
+
 
 const app = express();
 const server = require('http').createServer(app);
@@ -31,8 +33,9 @@ const io = require('socket.io')(server);
             socket.emit('newOrder', order);
         })
     })
+
 // Routes
-    app.use("/admin", require('./routes/admin'));
+    app.use("/admin", auth, require('./routes/admin'));
     app.use("/", require('./routes/public'));
 
 module.exports = server;
