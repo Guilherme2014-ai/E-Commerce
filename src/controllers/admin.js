@@ -143,7 +143,9 @@ class Admins{
     };
     async InventoryCreate_POST(req,res){
         try{
-            
+
+            req.body['img'] = req.file.filename;
+
             const data = InvetoryFactory(req.body)
 
             if(ValidationService.isEmpyt(data['name']) == true || ValidationService.isEmpyt(data['img']) == true || ValidationService.isEmpyt(['price']) == true || ValidationService.isEmpyt(['category_id']) == true || ValidationService.isEmpyt(data['desc']) == true){
@@ -159,6 +161,8 @@ class Admins{
                 res.sendStatus(500);
                 return;
             };
+
+            console.log(data)
 
             res.redirect('/admin/looks');
 

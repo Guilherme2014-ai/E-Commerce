@@ -1,7 +1,7 @@
 class Validation {
     isEmpyt(val){
         const arrVal = String(val).split("");
-        if(arrVal.every(a => a == " ") == true || val.length == 0 || val == " " || val == ""){ return true }
+        if(arrVal.every(a => a == " ") == true || val == " " || val == ""){ return true }
         return false
     }
     isValid(val){

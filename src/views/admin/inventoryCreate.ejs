@@ -9,14 +9,14 @@
 
 <main>
     <section>
-        <form action="/admin/look" method="POST">
+        <form action="/admin/look" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Coloque o Nome da Roupa" required>
             </div><br>
             <div class="form-group">
               <label for="img">Imagem</label>
-              <input type="text" class="form-control" name="img" id="img" aria-describedby="img" placeholder="Foto da Roupa" required>
+              <input class="form-control" type="file" id="img" name="img">
             </div><br>
             <div class="form-group">
                 <label for="price">Preco</label>

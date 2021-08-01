@@ -2,30 +2,13 @@ const auth = require('./middlewares/auth');
 const session = require('express-session');
 const flash = require('express-flash');
 const express = require('express');
-const multer = require('multer');
 const path = require('path');
 
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-const storage = multer.diskStorage({
-    destination(req,file,cb){
-        cb(null, path.join(__dirname, 'public'));
-    },
 
-    filename(req,file,cb){
-        cd(null, `${Date.now()}${file.originalname}`);
-    }
-})
-
-const uploud = multer({
-    storage,
-
-    limits: {
-        fileSize: 1048576 * 4
-    }
-})
 
 // Config
     app.set("views", path.join(__dirname, 'views'));
