@@ -29,7 +29,7 @@ An E-commerce Real Time made with Node(Express), Socket.io, EJS, SCSS / CSS3 / H
 
 <br>
 
-<h2>Administration page.</h2>
+<h2>Administration Page.</h2>
 <p>(If You Are a Admin's User You Will Have Access to This Page.)</p>
 <img src="https://cdn.discordapp.com/attachments/857701858655076402/871415367497576448/unknown.png" alt="Admin-Page" width="600">
 
