@@ -144,11 +144,15 @@ class Admins{
     async InventoryCreate_POST(req,res){
         try{
 
-            if(link){ // Configura naquelas bolinhas do html
+            if(req.body["isLink"] == "true"){
+                req.body['img'] = req.body["linkImg"];
+            }else{
                 req.body['img'] = `http://localhost/uploads/${req.file.filename}`;
-            }else{}
+            }
 
-            const data = InvetoryFactory(req.body)
+            const data = InvetoryFactory(req.body);
+
+            console.log(data)
 
             if(ValidationService.isEmpyt(data['name']) == true || ValidationService.isEmpyt(data['img']) == true || ValidationService.isEmpyt(['price']) == true || ValidationService.isEmpyt(['category_id']) == true || ValidationService.isEmpyt(data['desc']) == true){
                 res.status(400);

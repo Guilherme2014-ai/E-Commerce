@@ -10,17 +10,28 @@
 <main>
     <section>
         <form action="/admin/look" method="POST" enctype="multipart/form-data">
+            <div id="isLink">
+                
+            </div>
+            
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Coloque o Nome da Roupa" required>
             </div><br>
-            <div class="form-group">
-              <label for="img">Imagem</label>
-              <input class="form-control" type="file" id="img" name="img">
+
+            <p>Imagem</p>
+            <div class="images">
+                <div id="link">
+                    <input type="text" class="form-control" name="linkImg" id="linkImg" onclick="link()" placeholder="Link Da Imagem">
+                </div>
+                <div id="comp">
+                    <input type="file" class="form-control" name="compImg" id="compImg" onclick="comp()" placeholder="Diretorio da imagem">
+                </div>
             </div><br>
+
             <div class="form-group">
                 <label for="price">Preco</label>
-                <input type="text" class="form-control" name="price" id="price" placeholder="Preco da Roupa">
+                <input onclick="verify()" type="text" class="form-control" name="price" id="price" placeholder="Preco da Roupa">
             </div><br>
             <div class="form-group">
                 <label for="categories">Categoria</label>
@@ -44,5 +55,28 @@
     </section>
 </main><br>
 
+<script>
+    function link() {
+        var isLink = document.getElementById('isLink')
 
+        isLink.innerHTML = `<input type="hidden" name="isLink" value="true">`
+
+        var compChild = document.getElementById('compImg')
+        var linkChild = document.getElementById('linkImg')
+
+        compChild.style.opacity = '40%'
+        linkChild.style.opacity = '100%'
+    }
+    function comp() {
+        var isLink = document.getElementById('isLink')
+
+        isLink.innerHTML = `<input type="hidden" name="isLink" value="false">`
+
+        var linkChild = document.getElementById('linkImg')
+        var compChild = document.getElementById('compImg')
+
+        linkChild.style.opacity = '40%'
+        compChild.style.opacity = '100%'
+    }
+</script>
 <%- include('../partials/scripts.ejs') %>

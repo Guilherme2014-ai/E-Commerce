@@ -37,7 +37,7 @@ router.get('/orders', adminController.Orders)
 router.post('/categoria', adminController.CategoryCreate_POST);
 router.post('/editar/user/:id', adminController.userEdit_POST);
 router.post('/editar/look', adminController.EditLook_POST);
-router.post('/look', uploud.single('img'), adminController.InventoryCreate_POST);
+router.post('/look', uploud.single('compImg'), adminController.InventoryCreate_POST);
 
 
 module.exports = router;
