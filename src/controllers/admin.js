@@ -144,7 +144,9 @@ class Admins{
     async InventoryCreate_POST(req,res){
         try{
 
-            req.body['img'] = req.file.filename;
+            if(link){ // Configura naquelas bolinhas do html
+                req.body['img'] = `http://localhost/uploads/${req.file.filename}`;
+            }else{}
 
             const data = InvetoryFactory(req.body)
 
@@ -161,8 +163,6 @@ class Admins{
                 res.sendStatus(500);
                 return;
             };
-
-            console.log(data)
 
             res.redirect('/admin/looks');
 

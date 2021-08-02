@@ -35,6 +35,9 @@ const io = require('socket.io')(server);
         })
     })
 
+// Public Route
+    app.use("/uploads", express.static(path.join(__dirname, 'uploads')));
+
 // Routes
     app.use("/admin", auth, require('./routes/admin'));
     app.use("/", require('./routes/public'));
