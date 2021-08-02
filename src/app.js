@@ -9,7 +9,6 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 
-
 // Config
     app.set("views", path.join(__dirname, 'views'));
     app.set("view engine", "ejs");
@@ -33,7 +32,7 @@ const io = require('socket.io')(server);
             socket.broadcast.emit('newOrder', order);
             socket.emit('newOrder', order);
         })
-    })
+    })    
 
 // Public Route
     app.use("/uploads", express.static(path.join(__dirname, 'uploads')));

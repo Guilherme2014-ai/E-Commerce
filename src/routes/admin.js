@@ -1,24 +1,25 @@
-const router = require('express').Router();
 const adminController = require('../controllers/admin');
-const path = require('path');
+const router = require('express').Router();
 const multer = require('multer');
+const path = require('path');
 
 const storage = multer.diskStorage({
     destination(req,file,cb){
-        cb(null, path.join(__dirname, '..', 'uploads'));
+        cb(null, path.join(__dirname,`..`,`uploads`)); // aqui na maquina esta funcionando porem no heroku nao
+        /*
+        Possiveis Solucoes:
+        1- Mudar o Multer e suas Config para o app.
+        */
     },
 
     filename(req,file,cb){
         cb(null, `${Date.now()}${file.originalname}`);
     }
-})
+});
 
 const uploud = multer({
     storage,
-
-    limits: {
-        fileSize: 1048576 * 4
-    }
+    limits: { fileSize: 1048576 * 4 }
 });
 
 // GET's
