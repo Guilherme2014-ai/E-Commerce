@@ -29,12 +29,13 @@ An E-commerce Real Time made with Node(Express), Socket.io, EJS, SCSS / CSS3 / H
 
 <br>
 
-<h2>Admin Page.</h2>
+<h2>Administration Page.</h2>
+<p>(If You Are a Admin's User You Will Have Access to This Page.)</p>
 <img src="https://cdn.discordapp.com/attachments/857701858655076402/871415367497576448/unknown.png" alt="Admin-Page" width="600">
 
 <br>
 
-<h2>inventory Management.</h2>
+<h2>Inventory Management.</h2>
 <p>Here you Can Delete,Edit, Create a new Category and Create a new Product. <br> (If You Are a Admin's User You Will Have Access to This Page.)</p>
 <img src="https://cdn.discordapp.com/attachments/857701858655076402/871410843760336946/PicsArt_08-01-12.13.07.jpg" alt="inventory-Management" width="600">
 
