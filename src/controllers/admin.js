@@ -143,7 +143,8 @@ class Admins{
     };
     async InventoryCreate_POST(req,res){
         try{
-            req.body["isLink"] == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `http://localhost/uploads/${req.file.filename}`;
+            
+            req.body["isLink"] == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `https://e-commerce2014.herokuapp.com/uploads/${req.file.filename}`;
 
             const data = InvetoryFactory(req.body);
 
