@@ -189,7 +189,7 @@ class Public{
 
                 if(errors.length > 0){
                     req.flash('errors', errors);
-                    res.redirect('/');
+                    res.redirect('/cadastro');
                     return;
                 };
 
@@ -197,13 +197,13 @@ class Public{
 
             }else{
                 req.flash("errors",["Alguma informacao foi inserida incorretamente !"]);
-                res.redirect('/');
+                res.redirect('/cadastro');
                 return;
             }
 
         } catch(err){
             req.flash('errors', ["Algo Deu Errado !, Tente Novamente."]);
-            res.redirect('/');
+            res.redirect('/cadatro');
         };
     };
     async Login_POST(req,res){
