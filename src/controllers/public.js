@@ -143,8 +143,9 @@ class Public{
         try{
 
             const categories = await categoriesModel.FindAll();
+            const errors = req.flash('errors');
 
-            res.render('public/newAccount', { categories });
+            res.render('public/newAccount', { categories,errors });
 
         } catch(err){
             console.error(err);
