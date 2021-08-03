@@ -49,17 +49,20 @@ class Admins{
         try{
 
             const { id } = req.params;
+            const errors = [];
 
             const deleted = await InvetoryModel.DeleteOne(id);
 
             if(deleted == 400){
-                res.status(400);
-                res.sendStatus(400);
-                return;
+                errors.push(`Alguma Informacao foi enviada incorretamente !`)
             };
             if(deleted == 500){
-                res.status(500);
-                res.sendStatus(500);
+                errors.push("Algo Deu Errado !, Tente Novamente.")
+            };
+
+            if(errors.length > 0){
+                req.flash('errors', errors)
+                res.redirect('/');
                 return;
             };
 
@@ -67,8 +70,8 @@ class Admins{
 
         } catch(err){
             console.error(err);
-            res.status(500);
-            res.sendStatus(500);
+            req.flash('errors', [ "Algo Deu Errado !, Tente Novamente." ]);
+            res.redirect('/');
         };
     };
     async EditLook(req,res){
@@ -103,66 +106,11 @@ class Admins{
             res.sendStatus(500);
         };
     };
-    async EditLook_POST(req,res){
-        try{
-            const { id,name,img,desc } = req.body;
-            const data = { name,img,desc };
-
-            const update = await InvetoryModel.UpdateOne(id,data);
-
-            if(update == 400){
-                res.status(400);
-                res.sendStatus(400);
-                return;
-            };
-            if(update == 500){
-                res.status(500);
-                res.sendStatus(500);
-                return;
-            };
-
-            res.redirect('/admin/looks')
-
-        } catch(err){
-            console.error(err);
-            res.status(500);
-            res.sendStatus(500);
-        };
-    };
     async InventoryCreate(req,res){
         try{
 
             const categories = await CategoriesModel.FindAll();
             res.render('admin/inventoryCreate', { categories });
-
-        } catch(err){
-            console.error(err);
-            res.status(500);
-            res.sendStatus(500);
-        };
-    };
-    async InventoryCreate_POST(req,res){
-        try{
-            
-            req.body["isLink"] == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `https://e-commerce2014.herokuapp.com/uploads/${req.file.filename}`;
-
-            const data = InvetoryFactory(req.body);
-
-            if(ValidationService.isEmpyt(data['name']) == true || ValidationService.isEmpyt(data['img']) == true || ValidationService.isEmpyt(['price']) == true || ValidationService.isEmpyt(['category_id']) == true || ValidationService.isEmpyt(data['desc']) == true){
-                res.status(400);
-                res.sendStatus(400);
-                return;
-            };
-
-            const created = await InvetoryModel.Create(data);
-
-            if(created == 500){
-                res.status(500);
-                res.sendStatus(500);
-                return;
-            };
-
-            res.redirect('/admin/looks');
 
         } catch(err){
             console.error(err);
@@ -176,41 +124,6 @@ class Admins{
             const categories = await CategoriesModel.FindAll();
 
             res.render('admin/categoryCreate', { categories })
-
-        } catch(err){
-            console.error(err);
-            res.status(500);
-            res.sendStatus(500);
-        };
-    };
-    async CategoryCreate_POST(req,res){
-        try{
-            
-            const { name,isLink } = req.body;
-
-            isLink == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `https://e-commerce2014.herokuapp.com/uploads/${req.file.filename}`;
-
-            console.log(`img: ${req.body.img}`);
-
-            if(ValidationService.isEmpyt(name) == true || ValidationService.isEmpyt(req.body.img) == true){
-                res.status(400);
-                res.sendStatus(400);
-                return;
-            };
-
-            const data = {name,img: req.body['img'],slug: String(String(name).replace(' ','-').toLowerCase())}
-
-            console.log(data)
-
-            const saved = await CategoriesModel.Create(data);
-
-            if(saved == 500){
-                res.status(500);
-                res.sendStatus(500);
-                return;
-            };
-
-            res.redirect('/admin/looks');
 
         } catch(err){
             console.error(err);
@@ -277,6 +190,66 @@ class Admins{
             res.sendStatus(500);
         }
     };
+    async Orders(req,res){
+        try{
+
+            const categories = await CategoriesModel.FindAll();
+            const orders = await OrdersModel.FindAll();
+
+            if(orders == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            res.render('admin/orders', { categories,orders })
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        };
+    };
+
+    async CategoryCreate_POST(req,res){
+        try{
+            
+            const { name,isLink } = req.body;
+
+            isLink == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `https://e-commerce2014.herokuapp.com/uploads/${req.file.filename}`;
+
+            console.log(`img: ${req.body.img}`);
+
+            if(ValidationService.isEmpyt(name) == true || ValidationService.isEmpyt(req.body.img) == true){
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+
+            const data = {name,img: req.body['img'],slug: String(String(name).replace(' ','-').toLowerCase())}
+
+            console.log(data)
+
+            const saved = await CategoriesModel.Create(data);
+
+            if(saved == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            /*if(errors.length > 0){
+
+            };*/
+
+            res.redirect('/admin/looks');
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        };
+    };
     async userEdit_POST(req,res){
         try{
 
@@ -310,19 +283,54 @@ class Admins{
             res.sendStatus(500);
         }
     };
-    async Orders(req,res){
+    async EditLook_POST(req,res){
         try{
+            const { id,name,img,desc } = req.body;
+            const data = { name,img,desc };
 
-            const categories = await CategoriesModel.FindAll();
-            const orders = await OrdersModel.FindAll();
+            const update = await InvetoryModel.UpdateOne(id,data);
 
-            if(orders == 500){
+            if(update == 400){
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+            if(update == 500){
                 res.status(500);
                 res.sendStatus(500);
                 return;
             };
 
-            res.render('admin/orders', { categories,orders })
+            res.redirect('/admin/looks')
+
+        } catch(err){
+            console.error(err);
+            res.status(500);
+            res.sendStatus(500);
+        };
+    };
+    async InventoryCreate_POST(req,res){
+        try{
+            
+            req.body["isLink"] == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `https://e-commerce2014.herokuapp.com/uploads/${req.file.filename}`;
+
+            const data = InvetoryFactory(req.body);
+
+            if(ValidationService.isEmpyt(data['name']) == true || ValidationService.isEmpyt(data['img']) == true || ValidationService.isEmpyt(['price']) == true || ValidationService.isEmpyt(['category_id']) == true || ValidationService.isEmpyt(data['desc']) == true){
+                res.status(400);
+                res.sendStatus(400);
+                return;
+            };
+
+            const created = await InvetoryModel.Create(data);
+
+            if(created == 500){
+                res.status(500);
+                res.sendStatus(500);
+                return;
+            };
+
+            res.redirect('/admin/looks');
 
         } catch(err){
             console.error(err);

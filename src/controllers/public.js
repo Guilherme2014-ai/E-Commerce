@@ -13,7 +13,7 @@ class Public{
         
             const categories = await categoriesModel.FindAll();
 
-            res.render("public/index.ejs", { categories });
+            res.render("public/index.ejs", { categories,errors: req.flash("errors") });
 
         } catch(err){
             console.error(err);
@@ -152,11 +152,25 @@ class Public{
             res.status(500);
         };
     };
+    async Login(req,res){
+        try{
+
+            const categories = await categoriesModel.FindAll();
+            const errors = req.flash('errors');
+            res.render('public/login', { categories,errors });
+
+        } catch(err){
+            console.error(err);
+            return 500;
+        };
+    };
+
     async newAccount_POST(req,res){
         try{
 
             const { name,email,number,password } = req.body;
             const user = { name,email,number,password }
+            const errors = [];
 
             const content = [ name,email,number,password ];
 
@@ -170,33 +184,26 @@ class Public{
                 const wasCreated = await usersModel.Create(user);
 
                 if(wasCreated == 500){
-                    res.status(500);
-                    res.sendStatus(500);
+                    errors.push("Algo Deu Errado !, Tente Novamente.");
+                };
+
+                if(errors.length > 0){
+                    req.flash('errors', errors);
+                    res.redirect('/');
                     return;
                 };
 
                 res.redirect('/login');
 
             }else{
-                res.status(400);
-                res.sendStatus(400);
+                req.flash("errors",["Alguma informacao foi inserida incorretamente !"]);
+                res.redirect('/');
+                return;
             }
 
         } catch(err){
-            console.error(err);
-            res.sendStatus(500);
-            res.status(500);
-        };
-    };
-    async Login(req,res){
-        try{
-
-            const categories = await categoriesModel.FindAll();
-            res.render('public/login', { categories });
-
-        } catch(err){
-            console.error(err);
-            return 500;
+            req.flash('errors', ["Algo Deu Errado !, Tente Novamente."]);
+            res.redirect('/');
         };
     };
     async Login_POST(req,res){
@@ -217,23 +224,24 @@ class Public{
             if(okEmail == true && okPassword == true){
 
                 const login = await usersModel.Login(email,password);
+                const errors = [];
 
                 if(login == 500){
-                    res.status(500);
-                    res.sendStatus(500);
-                    return;
+                    errors.push("Algo Deu Errado !, Tente Novamente.");
                 };
                 if(login == 404){
-                    res.status(404);
-                    res.sendStatus(404);
-                    return;
+                    errors.push("Nao Encontrado !");
                 };
                 if(login == 401){
-                    res.status(401);
-                    res.sendStatus(401);
-                    return;
+                    errors.push("Alguma informacao foi inserida errada !");
                 };
                 
+                if(errors.length > 0){
+                    req.flash('errors', errors);
+                    res.redirect('/login');
+                    return;
+                };
+
                 req.session.user = {
                     name: login["name"],
                     email: login["email"],
@@ -243,13 +251,14 @@ class Public{
                 res.redirect('/')
 
             }else{
-                res.status(400);
-                res.sendStatus(400);
+                req.flash('errors',["Alguma informacao foi inserida errada !"]);
+                res.redirect('/login');
             }
 
         } catch(err){
             console.error(err);
-            return 500;
+            req.flash('errors', ["Algo Deu Errado !, Tente Novamente."]);
+            res.redirect('/');
         };
     };
 

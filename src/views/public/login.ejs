@@ -7,7 +7,16 @@
 <%- include('../partials/nav.ejs') %> <%# Aqui carrega o html da nav %> 
 
 
-<main>
+<main style="display: flex; flex-direction: column;">
+
+    <div id="flash messages">
+      <% errors.forEach(error => { %>
+          <div class="alert alert-danger" role="alert">
+              <%= error %>
+          </div>
+      <% }) %>
+    </div>
+
     <section>
         <form action="/login" method="POST">
             <div class="form-group">
