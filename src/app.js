@@ -22,7 +22,7 @@ const io = require('socket.io')(server);
         secret: 'gabrielviado2014',
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 60000 } // || secure: true
+        cookie: { maxAge: 900000 } // || secure: true
     }));
     app.use(flash());
 
