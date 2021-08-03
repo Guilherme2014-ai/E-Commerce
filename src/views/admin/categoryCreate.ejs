@@ -9,19 +9,26 @@
 
 <main>
     <section>
-        <form action="/admin/categoria" method="POST">
+        <form action="/admin/categoria" method="POST" enctype="multipart/form-data">
+
+          <div id="isLink"> </div>
+
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="Coloque o Nome da Categoria" required>
             </div><br>
-            <div class="form-group">
-              <label for="img">Imagem</label>
-              <input type="text" class="form-control" name="img" id="img" aria-describedby="img" placeholder="Foto da Categoria" required>
-            </div><br>
+            <div class="images">
+              <div id="link">
+                  <input type="text" class="form-control" name="linkImg" id="linkImg" onclick="link()" placeholder="Link Da Imagem">
+              </div>
+              <div id="comp">
+                  <input type="file" class="form-control" name="compImg" id="compImg" onclick="comp()" placeholder="Diretorio da imagem">
+              </div>
+          </div><br>
             <button type="submit" class="btn btn-primary">Criar</button>
           </form>
     </section>
 </main><br>
 
-
+<script src="/js/categoryCreate.js"></script>
 <%- include('../partials/scripts.ejs') %>

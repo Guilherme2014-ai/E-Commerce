@@ -186,15 +186,21 @@ class Admins{
     async CategoryCreate_POST(req,res){
         try{
             
-            const { name,img } = req.body;
+            const { name,isLink } = req.body;
 
-            if(ValidationService.isEmpyt(name) == true || ValidationService.isEmpyt(img) == true){
+            isLink == "true" ? req.body['img'] = req.body["linkImg"] : req.body['img'] = `https://e-commerce2014.herokuapp.com/uploads/${req.file.filename}`;
+
+            console.log(`img: ${req.body.img}`);
+
+            if(ValidationService.isEmpyt(name) == true || ValidationService.isEmpyt(req.body.img) == true){
                 res.status(400);
                 res.sendStatus(400);
                 return;
             };
 
-            const data = { name,img,slug: String(String(name).replace(' ','-').toLowerCase()) }
+            const data = {name,img: req.body['img'],slug: String(String(name).replace(' ','-').toLowerCase())}
+
+            console.log(data)
 
             const saved = await CategoriesModel.Create(data);
 

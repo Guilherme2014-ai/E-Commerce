@@ -35,7 +35,7 @@ router.get('/categoria', adminController.CategoryCreate);
 router.get('/orders', adminController.Orders)
 
 // POST's
-router.post('/categoria', adminController.CategoryCreate_POST);
+router.post('/categoria', uploud.single('compImg'), adminController.CategoryCreate_POST);
 router.post('/editar/user/:id', adminController.userEdit_POST);
 router.post('/editar/look', adminController.EditLook_POST);
 router.post('/look', uploud.single('compImg'), adminController.InventoryCreate_POST);
