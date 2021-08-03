@@ -43,4 +43,4 @@ const io = require('socket.io')(server);
 
 module.exports = server;
 
-// Responsividade, Flash Messages e moderacao de imagem.
+// Responsividade e Flash Messages.
